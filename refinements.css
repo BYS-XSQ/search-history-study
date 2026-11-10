@@ -1,0 +1,54 @@
+/* A non-modal, anchored popover. Opening history never reflows the homepage. */
+.home,.home:has(.history-panel:not([hidden])){padding-top:clamp(28px,8vh,76px)}
+.home:has(.history-panel:not([hidden])) .google-logo{width:272px;height:92px}
+.home:has(.history-panel:not([hidden])) .main-search{margin-top:26px}
+.search-actions,.home:has(.history-panel:not([hidden])) .search-actions{display:flex;align-items:center;gap:12px;margin-top:26px;position:relative}
+.action-divider{width:1px;height:20px;background:#e3e6ea;margin-left:2px}
+.history-trigger,.home:has(.history-panel:not([hidden])) .history-trigger{margin:0;padding:8px 11px;font-size:13px;height:36px}
+.history-panel{position:fixed;top:var(--history-top,390px);left:50%;transform:translateX(-50%);width:min(1000px,calc(100vw - 32px));height:min(510px,calc(100dvh - var(--history-top,390px) - var(--history-bottom,64px)));max-height:none;margin:0;border-radius:20px;box-shadow:0 12px 40px #3c40431a,0 3px 8px #3c404312;z-index:7;display:flex;flex-direction:column;container:history / inline-size;animation:popover-in .12s ease-out}
+.panel-header{padding:16px 20px 14px;flex:none}
+.panel-heading{gap:10px}.heading-icon{width:34px;height:34px}.heading-icon .icon{width:20px;height:20px}
+h1{font-size:20px;line-height:26px;font-weight:600;letter-spacing:-.25px}
+.panel-heading p{font-size:12px;margin-top:1px;line-height:16px}.header-actions{gap:12px}
+.saving-control{font-size:12px;gap:10px}.header-divider{height:20px}
+.toolbar{padding:0 20px 12px;gap:10px;flex:none}.history-search{height:38px}.history-search input{font-size:13px}
+.date-filter select{height:36px;font-size:12px}.delete-all{font-size:12px;padding:9px}
+.history-panel .history-scroll,.history-panel:has(.paused-note:not([hidden])) .history-scroll{height:auto;min-height:0;flex:1;padding:0 20px 16px;scrollbar-gutter:stable}
+.card-grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:7px 8px}
+.history-card{min-height:54px;border-radius:10px;display:grid;grid-template-columns:minmax(0,1fr) 24px;column-gap:4px;padding-right:6px}
+.record-link{gap:9px;padding:8px 0 8px 10px;min-height:54px;min-width:0}
+.record-icon{width:27px;height:27px;border-radius:7px}.record-icon img{width:17px;height:17px}.record-icon>.icon{width:17px;height:17px}
+.record-copy strong{font-size:13px;line-height:18px;font-weight:600}
+.record-meta{font-size:11px;line-height:15px;margin-top:2px;gap:5px;color:#63686d;display:grid;grid-template-columns:minmax(0,1fr) max-content max-content;min-width:0;white-space:nowrap}
+.record-meta>span:first-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.record-meta time{white-space:nowrap;font-variant-numeric:tabular-nums}
+.remove-record{position:static;transform:none;justify-self:end;margin:0;width:24px;height:24px;color:#747775;opacity:.45}
+.history-card:hover .remove-record,.history-card:focus-within .remove-record{opacity:1}
+.day-heading{position:static;padding:14px 1px 9px}.day-heading h2{font-size:13px;font-weight:600}.day-heading time,.day-count{font-size:11px;color:#63686d}.day-label{gap:8px}
+.panel-footer{padding:11px 21px;font-size:11px;flex:none}.panel-footer .icon{width:13px;height:13px}
+.paused-note{margin:0 20px 12px;padding:10px 12px;gap:10px;flex:none}.paused-note strong{font-size:12px}.paused-note p{font-size:11px;line-height:16px}.paused-note .text-button{font-size:12px;padding:8px 10px}
+.suggestions,.home:not(:has(.history-panel:not([hidden]))) .suggestions{top:calc(clamp(28px,8vh,76px) + 168px);transform:none;z-index:8}
+.utility-popover{z-index:9}
+/* Content is allowed to shrink; timestamps and controls keep reserved space. */
+body{min-width:320px}
+.main-search{width:min(584px,calc(100% - 32px))}
+.search-actions{max-width:calc(100% - 32px);flex-wrap:wrap;justify-content:center}
+.suggestions{width:min(584px,calc(100% - 32px))}
+.panel-header{flex-wrap:wrap;gap:10px;min-width:0}
+.panel-heading,.panel-heading>div{min-width:0}
+.header-actions{flex-shrink:0;margin-left:auto}
+.saving-control{white-space:nowrap}
+.toolbar{min-width:0;flex-wrap:wrap}
+.history-search{min-width:0;flex:1 1 200px}
+.date-filter,.delete-all{flex-shrink:0;white-space:nowrap}
+.day-label{min-width:0;flex-wrap:wrap}
+.day-heading{gap:10px}.day-count{flex-shrink:0;white-space:nowrap}
+.panel-footer{flex-wrap:wrap;gap:7px 14px}
+.panel-footer>span,.panel-footer>a{min-width:0}
+.paused-note{flex-wrap:wrap}.paused-note>div{min-width:150px}
+@container history (width < 520px){.history-search{flex-basis:100%}.date-filter{margin-right:auto}}
+@container history (width < 440px){.panel-header{padding-inline:16px}.header-actions{width:100%;justify-content:flex-end}.panel-heading p{display:none}.toolbar{padding-inline:16px}.history-panel .history-scroll{padding-inline:16px}.panel-footer{padding-inline:17px}}
+@media(max-width:600px){.topbar{padding-inline:16px}.topbar nav{gap:12px}.topbar nav:last-child{gap:10px}.page-footer{padding:10px 16px;height:auto;min-height:47px;flex-wrap:wrap;gap:10px 20px}.page-footer nav{gap:16px;flex-wrap:wrap}}
+@keyframes popover-in{from{opacity:0;translate:0 -4px}to{opacity:1;translate:0 0}}
+@media(max-height:800px){.home,.home:has(.history-panel:not([hidden])){padding-top:0}.main-search,.home:has(.history-panel:not([hidden])) .main-search{margin-top:20px}.search-actions,.home:has(.history-panel:not([hidden])) .search-actions{margin-top:18px}.panel-header{padding-top:12px;padding-bottom:10px}.panel-heading p{display:none}}
+@media print{.history-panel{position:relative;left:auto;transform:none;top:auto;height:auto;max-height:none;margin:18px auto}.history-panel .history-scroll{overflow:visible;flex:none}.remove-record{opacity:1}}

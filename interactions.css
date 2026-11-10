@@ -1,0 +1,37 @@
+.history-panel{animation:none;transform-origin:50% 0;box-shadow:none}
+.history-shadow{position:fixed;top:var(--history-top,390px);left:50%;transform:translateX(-50%);width:min(1000px,calc(100vw - 32px));height:min(510px,calc(100dvh - var(--history-top,390px) - var(--history-bottom,64px)));border-radius:20px;box-shadow:0 12px 40px #3c40431a,0 3px 8px #3c404312;pointer-events:none;z-index:6}
+.history-trigger .chevron{transition:transform 180ms cubic-bezier(.22,1,.36,1)}
+.history-panel[data-phase=closing]{pointer-events:none}
+.history-card{display:block;padding:0;position:relative;overflow:hidden;isolation:isolate;background:#e8f0fe;transition:border-color 160ms,box-shadow 160ms}
+.history-card:hover,.history-card:focus-within{background:#e8f0fe}
+.history-card:focus-within{border-color:#a8c7fa}
+.card-surface{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 24px;column-gap:4px;padding-right:6px;min-width:0;min-height:54px;border-radius:9px;background:#fff;transform:translateX(calc(-1px * var(--swipe-x,0)));transition:transform 260ms cubic-bezier(.22,1,.36,1),background-color 140ms;touch-action:pan-y;will-change:auto}
+.history-card:hover .card-surface{background:#f8fafd}
+.history-card[data-dragging] .card-surface{transition:none;cursor:grabbing;user-select:none;will-change:transform}
+.history-card[data-dragging] .record-link{cursor:grabbing;user-select:none}
+.card-surface img,.record-link{-webkit-user-drag:none}
+.row-options{width:24px;height:24px;align-self:center;color:#747775;opacity:.6;transition:color 120ms,background-color 120ms,opacity 120ms}
+.row-options .icon{width:17px;height:17px}.history-card:hover .row-options,.history-card:focus-within .row-options{opacity:1}.row-options[aria-expanded=true]{color:#0b57d0;background:#e8f0fe}
+.card-actions{position:absolute;inset:0 0 0 auto;width:132px;display:grid;grid-template-columns:1fr 1fr;z-index:0;background:#e8f0fe;visibility:hidden}
+.history-card[data-dragging] .card-actions,.history-card[data-drawer=open] .card-actions{visibility:visible}
+.card-action{min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;line-height:13px;font-weight:500;padding:3px;color:#0b57d0;background:#e8f0fe}
+.card-action .icon{width:17px;height:17px}.card-action:hover{background:#d3e3fd}.card-action:active{filter:brightness(.96)}
+.delete-action{background:#fce8e6;color:#b3261e}.delete-action:hover{background:#f9d7d3}
+.card-action:focus-visible{outline:2px solid currentColor;outline-offset:-4px;border-radius:6px}
+.record-title{display:flex;align-items:center;gap:4px;min-width:0}.record-title strong{min-width:0;flex:1}
+.marked-indicator{display:inline-flex;flex:none;color:#0b57d0}.marked-indicator .icon{width:12px;height:12px;fill:#d3e3fd;stroke-width:1.8}
+.is-marked{border-color:#c4d7f9}
+.is-marked .card-surface{background:#f0f5ff}
+.is-marked:hover .card-surface{background:#e8f0fe}
+.is-marked .record-icon{background:#e0ebff}
+.is-marked .record-title strong{color:#174ea6}
+.is-marked .marked-indicator .icon{fill:#4285f4;stroke:#0b57d0}
+.marked-filter{display:inline-flex;align-items:center;gap:5px;height:36px;padding:0 11px;border:1px solid #dadce0;border-radius:20px;white-space:nowrap;font-size:12px;flex-shrink:0;color:#5f6368;transition:background-color 140ms,border-color 140ms,color 140ms}
+.marked-filter .icon{width:15px;height:15px}.marked-filter:hover{background:#f1f5fc}.marked-filter[aria-pressed=true]{border-color:#d3e3fd;color:#0b57d0;background:#e8f0fe}.marked-filter[aria-pressed=true] .icon{fill:#d3e3fd}
+.gesture-hint{font-size:10px;color:#80868b;margin-inline:auto}
+.footer-links{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-left:auto;min-width:0}
+.reset-demo{padding:3px 0;font-size:11px;line-height:16px;color:#5f6368;white-space:nowrap;border-radius:3px}
+.reset-demo:hover{color:#0b57d0;text-decoration:underline}
+@container history (width < 700px){.gesture-hint{display:none}}
+@media(prefers-reduced-motion:reduce){.card-surface,.row-options,.marked-filter,.history-trigger .chevron{transition:none!important}}
+@media print{.card-actions,.row-options,.gesture-hint,.history-shadow{display:none}.card-surface{transform:none!important;grid-template-columns:1fr;padding-right:8px}}
